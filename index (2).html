@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฝึกซ้อมการประกวดนางนพมาศ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600;700&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #fcf8ef;
+            --card-bg: #fffdf9;
+            --gold-main: #c59b47;
+            --gold-dark: #8c6222;
+            --text-dark: #3e2b16;
+            --text-soft: #6b5338;
+        }
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-cream);
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(235, 215, 175, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(235, 215, 175, 0.25) 0%, transparent 50%);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 3px solid var(--gold-main);
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(139, 105, 40, 0.14);
+            max-width: 640px;
+            width: 100%;
+            padding: 36px 32px;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border: 1px solid rgba(197, 155, 71, 0.45);
+            border-radius: 14px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .lotus-top-left {
+            position: absolute;
+            top: -15px; left: -15px;
+            width: 140px; height: 140px;
+            opacity: 0.22;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .lotus-bottom-right {
+            position: absolute;
+            bottom: -15px; right: -15px;
+            width: 150px; height: 150px;
+            opacity: 0.22;
+            transform: rotate(180deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        .header-badge {
+            font-family: 'Noto Serif Thai', serif;
+            background: linear-gradient(180deg, #fffdf7 0%, #f5e6c4 100%);
+            border: 2px solid var(--gold-main);
+            color: #5c3a14;
+            font-weight: 700;
+            font-size: 1.35rem;
+            text-align: center;
+            padding: 12px 28px;
+            border-radius: 50px;
+            margin: 0 auto 22px auto;
+            box-shadow: 0 4px 10px rgba(197, 155, 71, 0.18);
+            max-width: 90%;
+        }
+        .thai-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 16px 0;
+            opacity: 0.75;
+        }
+        .thai-divider::before, .thai-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-main), transparent);
+        }
+        .thai-divider span {
+            padding: 0 12px;
+            color: var(--gold-main);
+            font-size: 1.1rem;
+        }
+        .stage-direction {
+            background: rgba(250, 243, 227, 0.7);
+            border: 1px dashed #d4b475;
+            border-radius: 12px;
+            padding: 10px 16px;
+            text-align: center;
+            font-style: italic;
+            color: var(--text-soft);
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+        .poem-box {
+            font-family: 'Noto Serif Thai', serif;
+            background: linear-gradient(90deg, rgba(249,239,217,0.6) 0%, #f6e7c6 50%, rgba(249,239,217,0.6) 100%);
+            border-top: 2px solid var(--gold-main);
+            border-bottom: 2px solid var(--gold-main);
+            border-radius: 12px;
+            padding: 18px 20px;
+            text-align: center;
+            font-size: 1.18rem;
+            font-weight: 600;
+            color: #543410;
+            line-height: 1.85;
+            margin-bottom: 18px;
+        }
+        .speech-box {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #e3cfa6;
+            border-radius: 14px;
+            padding: 22px 20px;
+            text-align: center;
+            line-height: 1.8;
+            font-size: 1.02rem;
+            margin-bottom: 18px;
+            color: var(--text-dark);
+        }
+        .speech-highlight {
+            font-weight: 600;
+            font-size: 1.12rem;
+            color: #5c3a14;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+        .question-box {
+            background: linear-gradient(180deg, #fdf9f0 0%, #f7ebd2 100%);
+            border: 1px solid #dec38c;
+            border-radius: 14px;
+            padding: 22px 18px;
+            margin-bottom: 18px;
+        }
+        .question-text {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1.28rem;
+            font-weight: 600;
+            color: #4f310f;
+            text-align: center;
+            line-height: 1.65;
+            margin: 0;
+        }
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .btn-audio {
+            background-color: #fffaf0;
+            border: 1.5px solid #c59b47;
+            color: #704b18;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: unset;
+            transition: all 0.2s ease;
+        }
+        .btn-audio:hover {
+            background-color: #f5e6c4;
+            transform: translateY(-1px);
+        }
+        .btn-audio-stop {
+            background-color: #fdf2f2;
+            border: 1.5px solid #d98282;
+            color: #9e3838;
+        }
+        .btn-audio-stop:hover {
+            background-color: #fae1e1;
+        }
+        textarea {
+            width: 100%;
+            height: 115px;
+            padding: 16px;
+            border: 2px solid #d9be89;
+            border-radius: 12px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.02rem;
+            line-height: 1.6;
+            resize: none;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            color: #2c1e0f;
+            transition: all 0.25s ease;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: var(--gold-main);
+            box-shadow: 0 0 12px rgba(197, 155, 71, 0.28);
+        }
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        button {
+            flex: 1;
+            padding: 13px 18px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(180deg, #cfa552 0%, #b08434 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(176, 132, 52, 0.3);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(180deg, #c29744 0%, #9c7228 100%);
+            transform: translateY(-1px);
+        }
+        .btn-nav {
+            background-color: #f2e7d0;
+            color: #63441e;
+            border: 1px solid #dec699;
+        }
+        .btn-nav:hover:not(:disabled) {
+            background-color: #e6d5b3;
+        }
+        .btn-nav:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+        .answer-box {
+            display: none;
+            margin-top: 22px;
+            padding: 20px 22px;
+            background: linear-gradient(180deg, #fcf6e8 0%, #f7ecd4 100%);
+            border: 1px solid #d6b678;
+            border-left: 5px solid var(--gold-main);
+            border-radius: 12px;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .answer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .answer-title {
+            font-family: 'Noto Serif Thai', serif;
+            font-weight: 700;
+            color: var(--gold-dark);
+            font-size: 1.12rem;
+        }
+        .answer-text {
+            font-size: 1.04rem;
+            line-height: 1.75;
+            color: #362411;
+        }
+        .ending-box {
+            font-family: 'Noto Serif Thai', serif;
+            background: linear-gradient(180deg, #fffcf5 0%, #f9edd4 100%);
+            border: 2px solid #cfa552;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: inset 0 0 20px rgba(197, 155, 71, 0.12);
+            animation: fadeIn 0.5s ease-out;
+        }
+        .ending-message {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #543410;
+            line-height: 2;
+            margin: 0;
+        }
+        .ending-highlight {
+            display: block;
+            margin-top: 14px;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #8c5818;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 480px) {
+            .card { padding: 26px 20px; }
+            .header-badge { font-size: 1.15rem; padding: 10px 18px; }
+            .question-text { font-size: 1.15rem; }
+            .ending-message { font-size: 1.18rem; }
+            .ending-highlight { font-size: 1.35rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <svg class="lotus-top-left" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 180 C20 100, 80 40, 160 20 C120 90, 90 130, 20 180 Z" stroke="#b58938" stroke-width="2.5" fill="#e8cfa0"/>
+        <path d="M10 130 C10 70, 50 30, 110 10 C80 60, 60 90, 10 130 Z" stroke="#b58938" stroke-width="2" fill="#f2dfc0"/>
+        <path d="M60 190 C70 130, 110 80, 180 60 C150 120, 120 150, 60 190 Z" stroke="#b58938" stroke-width="2" fill="#f2dfc0"/>
+        <circle cx="45" cy="45" r="6" fill="#b58938"/>
+        <circle cx="75" cy="25" r="4" fill="#b58938"/>
+        <circle cx="25" cy="75" r="4" fill="#b58938"/>
+    </svg>
+
+    <svg class="lotus-bottom-right" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 180 C20 100, 80 40, 160 20 C120 90, 90 130, 20 180 Z" stroke="#b58938" stroke-width="2.5" fill="#e8cfa0"/>
+        <path d="M10 130 C10 70, 50 30, 110 10 C80 60, 60 90, 10 130 Z" stroke="#b58938" stroke-width="2" fill="#f2dfc0"/>
+        <path d="M60 190 C70 130, 110 80, 180 60 C150 120, 120 150, 60 190 Z" stroke="#b58938" stroke-width="2" fill="#f2dfc0"/>
+        <circle cx="45" cy="45" r="6" fill="#b58938"/>
+        <circle cx="75" cy="25" r="4" fill="#b58938"/>
+        <circle cx="25" cy="75" r="4" fill="#b58938"/>
+    </svg>
+
+    <div class="content-wrapper">
+        <div id="intro-section">
+            <div class="header-badge">บทแนะนำตัวการประกวดนางนพมาศ</div>
+            
+            <div class="stage-direction">
+                (เดินสง่างาม หยุดยืนตรงกลางเวที สบตากรรมการ ยิ้มอย่างมั่นใจ และไหว้สวยๆ ก่อนเริ่มพูด)
+            </div>
+
+            <div class="poem-box">
+                “ สืบตำนาน นพมาศ ชาติวิจิตร<br>
+                เนรมิต กระทงงาม ตามวิถี<br>
+                อนุรักษ์ สืบสาน ประเพณี<br>
+                สวัสดี คืนเดือนเพ็ญ แสนงดงาม ”
+            </div>
+
+            <div class="speech-box">
+                <div class="speech-highlight">
+                    สวัสดีค่ะ ดิฉันหมายเลข 1<br>
+                    น้อย นางสาวน้อยนิด สวยซ่า<br>
+                    ปัจจุบันกำลังศึกษาอยู่ชั้นปีที่ 1 มหาวิทยาลัยอนุบาลหลายน่าโม ค่ะ
+                </div>
+                
+                <div class="thai-divider"><span>❖</span></div>
+
+                <p style="margin: 0 0 14px 0;">
+                    ในฐานะคนรุ่นใหม่ ดิฉันเชื่อว่าความงดงามของนางนพมาศไม่ได้หยุดอยู่แค่ในตำนาน 
+                    แต่คือการนำภูมิปัญญาไทยมาต่อยอดอย่างสร้างสรรค์ และรับผิดชอบต่อสังคมและสิ่งแวดล้อม
+                </p>
+                <p style="margin: 0;">
+                    วันนี้ดิฉันพร้อมแล้วที่จะเป็นตัวแทนในการสืบสานคุณค่าของประเพณีไทยให้ก้าวไปข้างหน้าอย่างยั่งยืน<br>
+                    <strong style="color: #5c3a14;">ฝากเป็นกำลังใจให้หมายเลข 1 ด้วยนะคะ ขอบคุณค่ะ</strong>
+                </p>
+            </div>
+
+            <div class="stage-direction" style="margin-bottom: 20px;">
+                (ไหว้อย่างอ่อนช้อย สง่างาม และยิ้มค้างไว้ก่อนเดินออกจากจุดแนะนำตัว)
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-primary" onclick="startQuiz()">เริ่มฝึกซ้อมตอบคำถาม (12 ข้อ) ➡️</button>
+            </div>
+        </div>
+
+        <div id="quiz-section" style="display: none;">
+            <div class="header-badge" id="q-number">แนวคำถามและคำตอบ (ข้อที่ 1 / 12)</div>
+            
+            <div class="question-box">
+                <p class="question-text" id="q-text">กำลังโหลดคำถาม...</p>
+                <div class="audio-controls">
+                    <button type="button" class="btn-audio" onclick="speakQuestion()">🔊 ฟังเสียงคำถาม</button>
+                    <button type="button" class="btn-audio btn-audio-stop" onclick="stopSpeech()">⏹️ หยุดเสียง</button>
+                </div>
+            </div>
+            
+            <textarea id="user-input" placeholder="พิมพ์คำตอบของคุณที่นี่เพื่อฝึกซ้อม..."></textarea>
+            
+            <div class="btn-group">
+                <button class="btn-primary" onclick="showAnswer()">ส่งคำตอบ / ดูแนวคำตอบ</button>
+            </div>
+
+            <div class="answer-box" id="answer-box">
+                <div class="answer-header">
+                    <div class="answer-title">❖ แนวคำตอบแนะนำ:</div>
+                    <button type="button" class="btn-audio" onclick="speakAnswer()">🔊 ฟังเสียงแนวคำตอบ</button>
+                </div>
+                <div class="answer-text" id="a-text"></div>
+            </div>
+
+            <div class="thai-divider" style="margin-top: 22px;"><span>❖</span></div>
+
+            <div class="btn-group">
+                <button class="btn-nav" id="prev-btn" onclick="prevStep()">⬅️ ย้อนกลับ</button>
+                <button class="btn-nav" id="next-btn" onclick="nextStep()">ข้อถัดไป ➡️</button>
+            </div>
+        </div>
+
+        <div id="ending-section" style="display: none;">
+            <div class="header-badge">กำลังใจจากคนข้างๆ ❖</div>
+
+            <div class="ending-box">
+                <div class="thai-divider" style="margin-top: 0;"><span>❖</span></div>
+                <p class="ending-message">
+                    “ สู้ๆ นะคนเก่ง เธอทำได้แน่นอน<br>
+                    เค้าเป็นกำลังใจให้นะคนสวยของเค้า<br>
+                    เธอชนะใจเค้าแล้ว ”
+                    <span class="ending-highlight">รักปิ่นน้อยที่สุด ❤️</span>
+                </p>
+                <div class="thai-divider" style="margin-bottom: 0;"><span>❖</span></div>
+            </div>
+
+            <div class="btn-group" style="margin-top: 24px;">
+                <button class="btn-nav" onclick="backToLastQuestion()">⬅️ กลับไปข้อที่ 12</button>
+                <button class="btn-primary" onclick="backToIntroFromEnd()">กลับหน้าแรก 🏠</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        {
+            q: "๑. คุณคิดว่าประเพณีลอยกระทงมีความสำคัญอย่างไร",
+            a: "คือการแสดงความกตัญญูต่อธรรมชาติผ่านสายน้ำ และเป็นการชำระล้างความขุ่นมัวในใจ เพื่อเริ่มต้นสิ่งใหม่ด้วยความมีสติและเคารพในสิ่งแวดล้อมค่ะ"
+        },
+        {
+            q: "๒. หากคุณได้รับตำแหน่งนางนพมาศ คุณมีวิธีการใดในการช่วยสืบสานประเพณีลอยกระทง",
+            a: "เปลี่ยนการสืบสานให้เข้าถึงง่ายผ่านสื่อโซเชียล โดยจะใช้พื้นที่ของตัวเองเล่าเรื่องราวคุณค่าของประเพณีในมุมมองคนรุ่นใหม่ และรณรงค์แคมเปญลอยกระทงอย่างสร้างสรรค์เพื่อให้วัฒนธรรมอยู่คู่กับยุคสมัยได้อย่างยั่งยืนค่ะ"
+        },
+        {
+            q: "๓. คุณมีวิธีการใดในการลอยกระทงที่จะช่วยอนุรักษ์สิ่งแวดล้อม",
+            a: "ยึดหลัก 1 ครอบครัว 1 กระทง หรือการลอยกระทงออนไลน์ เพื่อลดขยะตั้งแต่ต้นทาง เพราะการขอขมาพระแม่คงคาที่ดีที่สุดในยุคนี้ คือการไม่สร้างภาระเพิ่มให้สายน้ำค่ะ"
+        },
+        {
+            q: "๔. คุณสมบัติของนางนพมาศในทัศนคติของคุณคืออะไร",
+            a: "คือผู้หญิงที่มี รากฐานทางวัฒนธรรมที่มั่นคง แต่มีวิสัยทัศน์ที่ก้าวไกล ไม่ใช่แค่สวยงามตามแบบแผน แต่ต้องเป็นกระบอกเสียงที่สร้างแรงบันดาลใจและเป็นแบบอย่างที่ดีให้สังคมได้ค่ะ"
+        },
+        {
+            q: "๕. คุณจะใช้วัสดุอะไรในการทำกระทงที่เป็นมิตรกับสิ่งแวดล้อม",
+            a: "เลือกใช้ กระทงน้ำแข็ง ค่ะ เพราะนอกจากจะสวยงามแปลกตาแล้ว เมื่อลอยลงน้ำก็จะละลายกลายเป็นส่วนหนึ่งของสายน้ำทันที ไม่ทิ้งขยะ ไม่ทำให้น้ำเน่าเสีย และไม่เป็นอันตรายต่อสัตว์น้ำค่ะ"
+        },
+        {
+            q: "๖. นางนพมาศมีความสำคัญกับประเพณีลอยกระทงอย่างไร",
+            a: "เปรียบเสมือน ทูตวัฒนธรรมที่มีชีวิต ที่ช่วยถ่ายทอดความงดงาม ภูมิปัญญา และจิตวิญญาณของประเพณีไทยให้จับต้องได้ ทำให้คนรุ่นหลังเกิดความภาคภูมิใจและอยากรักษาสิ่งเหล่านี้ไว้ค่ะ"
+        },
+        {
+            q: "๗. หากมีคนมองว่าการประกวดนางนพมาศเป็นเรื่องล้าสมัย คุณจะอธิบายให้เขาเข้าใจอย่างไร?",
+            a: "ประเพณีไม่ใช่เรื่องล้าสมัย แต่คือ รากฐาน ที่ทำให้เรารู้ว่าเราเป็นใคร การประกวดนางนพมาศในยุคนี้ไม่ได้แข่งกันแค่ความสวย แต่คือการหาคนรุ่นใหม่มาเป็นสะพานเชื่อมให้วัฒนธรรมไทยเดินต่อไปข้างหน้าได้อย่างสง่างามค่ะ"
+        },
+        {
+            q: "๘. หากเปรียบตัวคุณเองเป็นส่วนประกอบหนึ่งของกระทง คุณคิดว่าตัวเองคืออะไร เพราะอะไร?",
+            a: "ขอเป็น เทียน ค่ะ เพราะแสงสว่างจากเทียนไม่ได้มีไว้เพื่อส่องให้ตัวเองโดดเด่น แต่มีไว้เพื่อนำทางและสร้างความอบอุ่น เช่นเดียวกับบทบาทของนางนพมาศที่ต้องเป็นแสงสว่างและแรงบันดาลใจที่ดีให้กับสังคมค่ะ"
+        },
+        {
+            q: "๙. ในยุคที่คนหันมาลอยกระทงออนไลน์มากขึ้น คุณคิดว่าเสน่ห์ของประเพณีดั้งเดิมจะหายไปหรือไม่?",
+            a: "รูปแบบอาจเปลี่ยนไปตามยุคสมัย แต่ หัวใจ ของประเพณีไม่เคยหายไปค่ะ ไม่ว่าจะลอยในน้ำหรือลอยผ่านหน้าจอ สิ่งสำคัญที่สุดคือความกตัญญูและการตระหนักถึงคุณค่าของทรัพยากรน้ำ ซึ่งเทคโนโลยีช่วยให้คนรุ่นใหม่เข้าถึงเจตนารมณ์นี้ได้ง่ายขึ้นด้วยซ้ำค่ะ"
+        },
+        {
+            q: "๑๐. ถ้าคุณมีโอกาสเชิญชวนนักท่องเที่ยวต่างชาติให้มาร่วมงานลอยกระทง คุณจะนำเสนอจุดเด่นอะไร?",
+            a: "จะนำเสนอเรื่อง ศิลปะแห่งความกตัญญู ค่ะ เพราะลอยกระทงไม่ได้มีแค่ความสวยงามของแสงไฟหรือชุดไทย แต่เป็นเทศกาลระดับโลกที่สอนให้มนุษย์รู้จักขอโทษและขอบคุณธรรมชาติอย่างอ่อนน้อม ซึ่งเป็นเสน่ห์ที่หาไม่ได้จากที่ไหนในโลกค่ะ"
+        },
+        {
+            q: "๑๑. ในฐานะนางนพมาศ คุณคิดว่า ความงามภายนอก หรือ คุณค่าภายใน อะไรสำคัญกว่ากัน?",
+            a: "ความงามภายนอกคือ ประตูบานแรก ที่ดึงดูดให้คนหันมามอง แต่คุณค่าภายในคือ เหตุผล ที่ทำให้คนจดจำและศรัทธา นางนพมาศที่สมบูรณ์แบบจึงต้องมีทั้งสองอย่างควบคู่กันค่ะ"
+        },
+        {
+            q: "๑๒. หากวันนี้คุณไม่ได้รับตำแหน่งนางนพมาศ คุณคิดว่าคุณได้อะไรจากการมาประกวดครั้งนี้?",
+            a: "ได้ ชนะใจตัวเอง ค่ะ การได้มายืนตรงนี้และถ่ายทอดความภาคภูมิใจในความเป็นไทยคือรางวัลที่มีค่าที่สุดแล้ว ไม่ว่าผลจะออกมาเป็นอย่างไร หนูก็จะยังคงทำหน้าที่สืบสานวัฒนธรรมที่ดีงามนี้ต่อไปในฐานะคนไทยคนหนึ่งค่ะ"
+        }
+    ];
+
+    let currentIndex = 0;
+    let currentAudio = null;
+
+    // ฟังก์ชันอ่านออกเสียงภาษาไทยแบบเสียงคนธรรมชาติ (ใช้ Google TTS Online เป็นหลัก และมี Web Speech สำรอง)
+    function speakText(text) {
+        stopSpeech();
+        
+        // ตัดเลขข้อไทยด้านหน้าออกเพื่อให้อ่านได้ลื่นหูขึ้น
+        let cleanText = text.replace(/^[๑๒๓๔๕๖๗๘๙๐]+\.\s*/, '');
+        // แปลงเลข 1 เป็นคำอ่านไทยเพื่อไม่ให้อ่านเป็นภาษาอังกฤษ
+        cleanText = cleanText.replace(/1/g, 'หนึ่ง');
+
+        // แบ่งประโยคถ้ายาวเกิน 180 ตัวอักษร เพื่อให้ Google TTS อ่านได้ครบทุกคำไม่ตัดจบ
+        const chunks = splitTextIntoChunks(cleanText, 160);
+        playChunksSequentially(chunks, 0);
+    }
+
+    function splitTextIntoChunks(text, maxLength) {
+        const words = text.split(' ');
+        const chunks = [];
+        let currentChunk = '';
+
+        for (let word of words) {
+            if ((currentChunk + ' ' + word).trim().length <= maxLength) {
+                currentChunk = (currentChunk + ' ' + word).trim();
+            } else {
+                if (currentChunk) chunks.push(currentChunk);
+                currentChunk = word;
+            }
+        }
+        if (currentChunk) chunks.push(currentChunk);
+        return chunks;
+    }
+
+    function playChunksSequentially(chunks, index) {
+        if (index >= chunks.length) return;
+
+        const encodedText = encodeURIComponent(chunks[index]);
+        const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=th&client=tw-ob&q=${encodedText}`;
+        
+        currentAudio = new Audio(url);
+        currentAudio.playbackRate = 0.95; // ปรับความเร็วให้นุ่มนวล ชัดเจน
+
+        currentAudio.onended = function() {
+            playChunksSequentially(chunks, index + 1);
+        };
+
+        currentAudio.onerror = function() {
+            // ระบบสำรอง: หากโดนบล็อกเครือข่าย ให้สลับไปใช้เสียงภาษาไทยในเครื่อง
+            fallbackBrowserSpeech(chunks.slice(index).join(' '));
+        };
+
+        currentAudio.play().catch(function() {
+            fallbackBrowserSpeech(chunks.slice(index).join(' '));
+        });
+    }
+
+    function fallbackBrowserSpeech(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'th-TH';
+            utterance.rate = 0.92;
+            const voices = window.speechSynthesis.getVoices();
+            const thaiVoice = voices.find(v => v.lang.includes('th') || v.name.includes('Thai') || v.name.includes('Kanya') || v.name.includes('Pattara'));
+            if (thaiVoice) {
+                utterance.voice = thaiVoice;
+            }
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    function stopSpeech() {
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            currentAudio = null;
+        }
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+        }
+    }
+
+    function speakQuestion() {
+        speakText(quizData[currentIndex].q);
+    }
+
+    function speakAnswer() {
+        speakText(quizData[currentIndex].a);
+    }
+
+    function startQuiz() {
+        stopSpeech();
+        document.getElementById('intro-section').style.display = 'none';
+        document.getElementById('ending-section').style.display = 'none';
+        document.getElementById('quiz-section').style.display = 'block';
+        currentIndex = 0;
+        loadQuestion();
+    }
+
+    function backToIntro() {
+        stopSpeech();
+        document.getElementById('quiz-section').style.display = 'none';
+        document.getElementById('ending-section').style.display = 'none';
+        document.getElementById('intro-section').style.display = 'block';
+    }
+
+    function backToIntroFromEnd() {
+        backToIntro();
+    }
+
+    function backToLastQuestion() {
+        stopSpeech();
+        document.getElementById('ending-section').style.display = 'none';
+        document.getElementById('quiz-section').style.display = 'block';
+        currentIndex = quizData.length - 1;
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        stopSpeech();
+        const current = quizData[currentIndex];
+        document.getElementById('q-number').innerText = `แนวคำถามและคำตอบ (ข้อที่ ${currentIndex + 1} / ${quizData.length})`;
+        document.getElementById('q-text').innerText = current.q;
+        document.getElementById('a-text').innerText = current.a;
+        
+        document.getElementById('user-input').value = '';
+        document.getElementById('answer-box').style.display = 'none';
+
+        const prevBtn = document.getElementById('prev-btn');
+        prevBtn.innerText = currentIndex === 0 ? '⬅️ หน้าแนะนำตัว' : '⬅️ ข้อก่อนหน้า';
+        
+        const nextBtn = document.getElementById('next-btn');
+        nextBtn.disabled = false;
+        if (currentIndex === quizData.length - 1) {
+            nextBtn.innerText = 'หน้าสุดท้าย 💖 ➡️';
+            nextBtn.style.background = 'linear-gradient(180deg, #cfa552 0%, #b08434 100%)';
+            nextBtn.style.color = '#ffffff';
+        } else {
+            nextBtn.innerText = 'ข้อถัดไป ➡️';
+            nextBtn.style.background = '#f2e7d0';
+            nextBtn.style.color = '#63441e';
+        }
+    }
+
+    function showAnswer() {
+        const userInput = document.getElementById('user-input').value.trim();
+        if (userInput === "") {
+            alert("ลองพิมพ์คำตอบของตัวเองดูก่อนกดดูแนวคำตอบนะครับ 😊");
+            return;
+        }
+        document.getElementById('answer-box').style.display = 'block';
+    }
+
+    function prevStep() {
+        if (currentIndex === 0) {
+            backToIntro();
+        } else {
+            currentIndex--;
+            loadQuestion();
+        }
+    }
+
+    function nextStep() {
+        if (currentIndex < quizData.length - 1) {
+            currentIndex++;
+            loadQuestion();
+        } else {
+            stopSpeech();
+            document.getElementById('quiz-section').style.display = 'none';
+            document.getElementById('ending-section').style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
